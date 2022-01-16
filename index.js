@@ -1,7 +1,7 @@
+import fs from 'node:fs';
+import https from 'node:https';
 // Import Dependencies
 import cheerio from 'cheerio';
-import fs from 'fs';
-import https from 'https';
 import fetch from 'node-fetch';
 
 // Create a new memes folder for saving the downloaded images if none exists
