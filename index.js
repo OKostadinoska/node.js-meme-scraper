@@ -13,13 +13,25 @@ fs.mkdir('./memes', { recursive: true }, (err) => {
 
 // Declare an empty array
 const downloadedImages = [];
+const currentImages = [];
 
 // Create a request to fetch HTML from URL
-fetch('https://memegen-link-examples-upleveled.netlify.app/')
+void fetch('https://memegen-link-examples-upleveled.netlify.app/')
   .then((response) => response.text())
   .then((html) => {
     // Declare a variable html
     const $ = cheerio.load(html);
+
+    // Get images URLs and put them into an array
+    $('img').each((i, element) => {
+      const imageUrl = $(element).attr('src'); // Reference for the image element
+      currentImages.push(imageUrl);
+    });
+    // Taking first ten images and put them into new array
+    for (let i = 0; i < 10; i++) {
+      const images = currentImages[i];
+      downloadedImages.push(images);
+    }
 
     // Loop through the first 10 images and downloads them
     for (let i = 0; i < 10; i++) {
