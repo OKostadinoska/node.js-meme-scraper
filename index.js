@@ -35,7 +35,10 @@ void fetch('https://memegen-link-examples-upleveled.netlify.app/')
 
     // Loop through the first 10 images and downloads them
     for (let i = 0; i < 10; i++) {
-      const file = fs.createWriteStream(`./memes/memes${i}.jpg`);
+      // Add 0 before an image number if necessary
+      const path =
+        i === 9 ? `./memes/memes${i + 1}.jpg` : `./memes/memes0${i + 1}.jpg`;
+      const file = fs.createWriteStream(path);
       https.get(downloadedImages[i], function (response) {
         response.pipe(file);
       });
